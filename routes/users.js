@@ -1,19 +1,29 @@
 const express = require("express");
-const User = require("../models/user");
 const wrapAsync = require("../utils/wrapAsync");
-const passport = require("passport");
 const users = require("../controllers/users");
 
-const router = express.Router();
+// const router = express.Router();
+const router = express.Router({ mergeParams: true });
 
-router.route("/register")
+router
+    .route("/register")
     .get(users.renderRegister)
     .post(wrapAsync(users.register));
 
-router.route("/login")
-    .get(users.renderLogin)
-    .post(passport.authenticate("local", { failureFlash: true, failureRedirect: "/login" }), users.login)
+router.get(
+    "/analytics",
+    wrapAsync(users.userIsLoggedIn),
+    users.renderDashboard
+);
 
-router.get("/logout", users.logout)
+// passport.use("user", new LocalStrategy(User.authenticate()));
+// router.get(
+//     "/login",
+//     passport.authenticate("user", {
+//         failureRedirect: "/login",
+//         failureFlash: true,
+//     }),
+//     users.login
+// );
 
 module.exports = router;

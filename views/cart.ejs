@@ -1,0 +1,46 @@
+<% layout("layouts/boilerplate") %>
+    <link rel="stylesheet" href="/style_sheets/cart.css" />
+    <div class="wrap cf">
+        <div class="heading cf">
+            <h1>My Cart</h1>
+            <button class="btn btn-primary" id="continue-scanning">
+      <a href="/scan" class="">Continue Scanning</a>
+    </button>
+        </div>
+        <div class="cart">
+            <ul class="cartWrap"></ul>
+        </div>
+
+        <div class="subtotal cf">
+            <ul>
+                <li class="totalRow">
+                    <span class="label">Subtotal</span
+        ><span class="value" id="cart-subtotal">$<%= total %> </span>
+                </li>
+
+                <li class="totalRow">
+                    <span class="label">Tax</span
+        ><span class="value" id="cart-tax"
+          >$<%=( total * .0725).toFixed(2) %>
+        </span>
+                </li>
+                <li class="totalRow final">
+                    <span class="label">Total</span
+        ><span class="value" id="cart-total"
+          >$<%= (total * 1.0725).toFixed(2) %>
+        </span>
+                </li>
+                <li class="totalRow">
+                    <button class="btn btn-success" id="checkout-button">Checkout</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="/javascripts/cart_class.js"></script>
+
+    <script src="/javascripts/libraries/axios.js"></script>
+    <script>
+        const products = JSON.parse(`<%- JSON.stringify(products) %>`);
+    </script>
+    <script src="/javascripts/cart.js"></script>

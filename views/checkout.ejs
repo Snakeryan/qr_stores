@@ -1,0 +1,24 @@
+<% layout("layouts/boilerplate") %>
+    <link rel="stylesheet" href="/style_sheets/checkout.css" />
+
+    <div class="d-flex justify-content-center h-100" id="qr-div">
+        <embed class="pdfobject" type="application/pdf" id="receipt" />
+    </div>
+
+    <div class="lead">
+        After showing your receipt to the employee. You can
+        <a href="/scan">keep scanning</a>.
+    </div>
+
+    <script>
+        const products = JSON.parse(`<%- JSON.stringify(products) %>`);
+        const total = `<%- total %>`;
+        const cartItemAmount = `<%- cartItemAmount %>`;
+    </script>
+
+    <script src="/javascripts/libraries/qrcode.js"></script>
+    <script src="/javascripts/libraries/axios.js"></script>
+
+    <script src="/javascripts/libraries/invoice.js"></script>
+
+    <script src="/javascripts/checkout.js"></script>

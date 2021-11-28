@@ -1,23 +1,42 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<link rel="stylesheet" href="/style_sheets/navbar.css" />
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Yelp Camp</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" width="20rem" href="#">
+            <img src="/images/qr_supermarket_logo.png" class="" id="logo" alt="" width="15%" />
+            <span class="ml-4">QR Stores</span>
+
+            <span id="cart-item-amount-span" class="badge bg-secondary <%= cartItemAmount ? " " : "d-none " %> ">
+        <%= cartItemAmount %>
+      </span>
+        </a>
+        <button class="navbar-toggler" id="navbar-toggler-button" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link" href="/">Home</a>
-                <a class="nav-link" href="/campgrounds">Campgrounds</a>
-                <a class="nav-link" href="/campgrounds/new">New Campgrounds</a>
-            </div>
-            <div class="navbar-nav ml-auto">
-                <% if(!currentUser) { %>
-                    <a href="/login " class="nav-link ">Login</a>
-                    <a href="/register " class="nav-link ">Register</a>
-                    <% } else{ %>
-                        <a href="/logout " class="nav-link ">Logout</a>
+                <div class="navbar-nav ml-auto">
+                    <% if(!currentUser) { %>
+                        <a href="/login " class="nav-link">Login</a>
+                        <a href="/register " class="nav-link">Register</a>
+                        <% } else if (currentUser.description){ %>
+                            <a href="/companies/dashboard " class="nav-link">Dashboard</a>
+                            <a href="/logout " class="nav-link">Logout</a>
+                            <% }  else { %>
+                                <a href="/logout " class="nav-link">Logout</a>
+                                <a href="/users/analytics" class="nav-link">Analytics</a>
+                                <% } %>
+                </div>
+                <% if (currentUser && currentUser.products) { %>
+                    <a class="nav-link" href="/scan">Test Scan</a>
+                    <a class="nav-link" id="cart-anchor-tag" href="/cart ">Test Cart</a>
+                    <% } else { %>
+                        <a class="nav-link" href="/scan ">Scan</a>
+                        <a class="nav-link" id="cart-anchor-tag" href="/cart ">Cart</a>
                         <% } %>
             </div>
         </div>
     </div>
 </nav>
+
+<script src="/javascripts/navbar.js"></script>

@@ -1,0 +1,223 @@
+<% layout("layouts/boilerplate") %>
+    <link href="/style_sheets/google_fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css" />
+
+    <link rel="stylesheet" href="/style_sheets/libraries/bd-wizard.css" />
+    <link rel="stylesheet" href="/style_sheets/setup.css" />
+
+    <main class="my-5">
+        <h1 class="text-center my-4">Setup Store</h1>
+
+        <div class="container">
+            <div id="wizard">
+                <h3>
+                    <div class="media">
+                        <div class="bd-wizard-step-icon">
+                            <i class="mdi mdi-file-table"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="bd-wizard-step-title">CSV Upload</div>
+                            <div class="bd-wizard-step-subtitle">Step 1</div>
+                        </div>
+                    </div>
+                </h3>
+                <section>
+                    <div class="content-wrapper">
+                        <h4 class="section-heading">
+                            Upload a CSV file with all your products
+                        </h4>
+                        <div class="row mx-3" id="addCSVFile">
+                            <table class="table table-light my-5" style="width: 100%; margin-bottom: 0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Format:</th>
+                                        <th scope="col">Name,</th>
+                                        <th scope="col">Price,</th>
+                                        <th scope="col">Section Name,</th>
+                                        <th scope="col">Description</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                            <input type="file" class="form-control" id="csvInput" />
+                        </div>
+                    </div>
+                </section>
+                <h3>
+                    <div class="media">
+                        <div class="bd-wizard-step-icon">
+                            <i class="mdi mdi-table"></i>
+                        </div>
+                        <div class="media-body">
+                            <div class="bd-wizard-step-title">Edit CSV</div>
+                            <div class="bd-wizard-step-subtitle">Step 2</div>
+                        </div>
+                    </div>
+                </h3>
+                <section>
+                    <div class="content-wrapper">
+                        <h4 class="section-heading">Edit CSV Values</h4>
+
+                        <p>
+                            In the below inputs, any data without a section will mean there will be no section QR with that product.
+                        </p>
+
+                        <label for="searchCSVRows" class="form-label">Search the items by name:</label
+          >
+          <input type="text" class="form-control p-3" id="searchCSVRows" />
+
+          <div class="row mx-3" id="editCSV">
+            <div class="scroll my-3" height="">
+              <table
+                class="table table-light my-5"
+                style="width: 100%; margin-bottom: 0"
+              >
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Section Name</th>
+                    <th scope="col">Description</th>
+                  </tr>
+                </thead>
+                <tbody id="csvTableBody"></tbody>
+              </table>
+            </div>
+
+            <button class="btn btn-primary mb-3" id="addRow">Add Row</button>
+            <button class="btn btn-danger" id="removeRow">Remove Row</button>
+          </div>
+        </div>
+      </section>
+      <h3>
+        <div class="media">
+          <div class="bd-wizard-step-icon">
+            <i class="mdi mdi-pdf-box"></i>
+          </div>
+          <div class="media-body">
+            <div class="bd-wizard-step-title">Edit PDF</div>
+            <div class="bd-wizard-step-subtitle">Step 3</div>
+          </div>
+        </div>
+      </h3>
+      <section>
+        <div class="content-wrapper">
+          <h4 class="section-heading">PDF Modifications</h4>
+          <div class="row d-flex justify-content-center">
+            <div class="col-auto">
+              <p class="text-center my-4">QR Product PDF</p>
+              <div class="form-group my-3">
+                <label for="QRProductPDFUnits" class="form-label"
+                  >PDF Units</label
+                >
+                <select
+                  name=""
+                  id="QRProductPDFUnits"
+                  class="PDFUnits form-control"
+                ></select>
+              </div>
+              <div class="form-group my-3">
+                <label for="QRProductPDFFormat" class="form-label"
+                  >PDF Format</label
+                >
+                <select
+                  name=""
+                  id="QRProductPDFFormat"
+                  class="PDFFormat form-control"
+                ></select>
+              </div>
+              <div class="form-group">
+                <label for="QRProductPDFImageSize" class="form-label"
+                  >Enter the size of the QRs</label
+                >
+                <input
+                  type="number"
+                  class="form-control PDFImageSize"
+                  id="QRProductPDFImageSize"
+                />
+              </div>
+            </div>
+
+            <div class="col-auto">
+              <p class="my-4 text-center">QR Section PDF</p>
+
+              <div class="form-group my-3">
+                <label for="QRSectionPDFUnits" class="form-label"
+                  >PDF Units</label
+                >
+                <select
+                  name=""
+                  id="QRSectionPDFUnits"
+                  class="PDFUnits form-control"
+                ></select>
+              </div>
+              <div class="form-group my-3">
+                <label for="QRSectionPDFFormat" class="form-label"
+                  >PDF Format</label
+                >
+                <select
+                  name=""
+                  id="QRSectionPDFFormat"
+                  class="PDFFormat form-control"
+                ></select>
+              </div>
+              <div class="form-group">
+                <label for="QRSectionPDFImageSize" class="form-label"
+                  >Enter the size of the QRs</label
+                >
+                <input
+                  type="number"
+                  class="form-control PDFImageSize"
+                  id="QRSectionPDFImageSize"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <h3>
+        <div class="media">
+          <div class="bd-wizard-step-icon">
+            <i class="mdi mdi-download"></i>
+          </div>
+          <div class="media-body">
+            <div class="bd-wizard-step-title">Download PDF</div>
+            <div class="bd-wizard-step-subtitle">Step 4</div>
+          </div>
+        </div>
+      </h3>
+      <section>
+        <div class="content-wrapper">
+          <h4 class="section-heading" id="finishText">
+            PDFs Downloading... <i class="mdi mdi-spin"></i>
+          </h4>
+          <div
+            class="row d-flex align-items-center justify-content-center"
+            id="finish"
+          >
+            <a
+              class="d-flex justify-content-center align-items-center"
+              id="finishButton"
+              href="/companies/dashboard"
+              ><button class="btn btn-success w-100">
+                Return to Dashboard
+              </button></a
+            >
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<script src="/javascripts/libraries/papaparse.min.js"></script>
+<script src="/javascripts/libraries/jquery/jquery.min.js"></script>
+<script src="/javascripts/libraries/jquery/jquery_csv.min.js"></script>
+<script src="/javascripts/libraries/popper.js"></script>
+<script src="/javascripts/libraries/bootstrap.min.js"></script>
+<script src="/javascripts/libraries/jquery/jquery.steps.min.js"></script>
+<script src="/javascripts/libraries/bd-wizard.js"></script>
+<script src="/javascripts/libraries/jspdf.js"></script>
+<script src="/javascripts/libraries/qrcode.js"></script>
+<script src="/javascripts/libraries/axios.js"></script>
+<script src="/javascripts/setup.js"></script>

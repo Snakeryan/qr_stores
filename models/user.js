@@ -7,10 +7,14 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
-    }
-})
+        unique: true,
+    },
+    userAnalytics: {
+        type: Schema.Types.ObjectId,
+        ref: "UserAnalytic",
+    },
+});
 
 userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model("User", userSchema)
+module.exports = mongoose.model("User", userSchema);

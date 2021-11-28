@@ -1,0 +1,234 @@
+<% layout("layouts/boilerplate") %>
+    <link rel="stylesheet" href="/style_sheets/dashboard.css" />
+
+    <div class="container-fluid">
+        <h1 class="display-4 text-center mb-3">Dashboard</h1>
+
+        <% if (company.products.length === 0) { %>
+
+            <div class="alert alert-warning">
+                <p class="">
+                    Please click the link to start the store setup process:
+                    <a href="/companies/setup">setup store</a>
+                </p>
+            </div>
+            <% } %>
+                <!-- Content Row -->
+                <div class="row">
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="
+                  text-xs
+                  font-weight-bold
+                  text-primary text-uppercase
+                  mb-1
+                ">
+                                            Earnings (Today)
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            $
+                                            <%= companyAnalytics.totalAmountEarnedToday || "x" %>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="
+                  text-xs
+                  font-weight-bold
+                  text-success text-uppercase
+                  mb-1
+                ">
+                                            Earnings (All Time)
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            $
+                                            <%= companyAnalytics.totalAmountEarnedByDay ?
+                companyAnalytics.totalAmountEarnedByDay.reduce((sum, current) =>
+                sum+current, 0) : companyAnalytics.totalAmountEarnedToday ||
+                "x"%>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="
+                  text-xs
+                  font-weight-bold
+                  text-success text-uppercase
+                  mb-1
+                ">
+                                            Shoppers (Today)
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <%= companyAnalytics.totalShoppersToday || "x" %>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="
+                  text-xs
+                  font-weight-bold
+                  text-success text-uppercase
+                  mb-1
+                ">
+                                            Total Shoppers (All Time)
+                                        </div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                            <%= companyAnalytics.totalShoppersByDay ?
+                companyAnalytics.totalShoppersByDay.reduce((sum, current) =>
+                sum+current, 0) || companyAnalytics.totalShoppersToday:
+                companyAnalytics.totalShoppersToday || "x"%>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+
+                    <div class="row">
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="
+              card-header
+              py-3
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-between
+            ">
+                                    <h6 class="m-0 font-weight-bold text-primary text-center w-100">
+                                        Revenue Per Day
+                                    </h6>
+                                    <div class="dropdown no-arrow">
+                                        <div class="shadow animated--fade-in" aria-labelledby=""></div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="revenue-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div class="
+              card-header
+              py-3
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-between
+            ">
+                                    <h6 class="m-0 font-weight-bold text-primary text-center w-100">
+                                        Shoppers Per Day
+                                    </h6>
+                                    <div class="dropdown no-arrow">
+                                        <div class="shadow animated--fade-in" aria-labelledby=""></div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="shoppers-chart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-8 col-lg-7">
+                            <div id="product-analytics-card" class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="
+              card-header
+              py-3
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-between
+            ">
+                                    <h6 class="m-0 font-weight-bold text-primary text-center w-100">
+                                        Product Analytics
+                                    </h6>
+                                    <div class="dropdown no-arrow"></div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body scroll">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Total Amount Shoppers Bought</th>
+                                                <th scope="col">Total Amount Earned</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="product-analytics-table-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+                </div>
+    </div>
+
+    <script>
+        const companyAnalytics = JSON.parse(
+            `<%- JSON.stringify(companyAnalytics) %>`
+        );
+        const userAnalytics = false;
+        const products = JSON.parse(`<%- JSON.stringify(company.products) %>`);
+    </script>
+    <script src="/javascripts/libraries/jquery/jquery.min.js"></script>
+    <script src="/javascripts/libraries/jquery/jquery.easing.min.js"></script>
+    <script src="/javascripts/sb-admin-2.min.js"></script>
+    <script src="/javascripts/libraries/Chart.min.js"></script>
+    <script src="/javascripts/chart-area.js"></script>
+
+    <script src="/javascripts/dashboard.js"></script>

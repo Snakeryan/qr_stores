@@ -1,0 +1,65 @@
+<% layout("layouts/boilerplate") %>
+
+    <link rel="stylesheet" href="/style_sheets/scan.css" />
+
+    <h1 class="text-center display-4">Scan Items or Sections</h1>
+    <div>
+        <video id="qr-video" disablepictureinpicture="" class="d-none" playsinline="" style="width: 400px; height: 400px"></video>
+
+        <br />
+    </div>
+
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="" id="scan-card" style="">
+            <img src="/images/preload_scan.png" alt="loading..." id="preload-image" class="img-fluid img-thumbnail" />
+
+            <a href="/cart">
+                <button class="btn btn-primary w-100">Go to Cart</button></a>
+        </div>
+    </div>
+
+    <!-- Button trigger modal -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="addToCartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addToCartModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center">
+                    <h5 class="modal-title" id="addToCartModalLabel">Products</h5>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Quantity in Cart</th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-table-body"></tbody>
+                    </table>
+                    <p style="color: black">
+                        Cart total: <span id="cart-total" class="badge bg-secondary"></span>
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="close-button" data-bs-dismiss="modal">
+          Close
+        </button>
+                    <button type="button" class="btn btn-success" id="add-to-cart-button">
+          Add To Cart
+        </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary d-none" id="edit-cart-modal" data-bs-toggle="modal" data-bs-target="#addToCartModal">
+  Launch static backdrop modal
+</button>
+
+    <script src="/javascripts/libraries/qr_scanner.min.js"></script>
+    <script src="/javascripts/libraries/axios.js"></script>
+    <script src="/javascripts/cart_class.js"></script>
+    <script src="/javascripts/scan.js"></script>

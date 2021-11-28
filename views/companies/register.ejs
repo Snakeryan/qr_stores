@@ -1,0 +1,42 @@
+<% layout("layouts/boilerplate") %>
+    <link rel="stylesheet" href="/style_sheets/register.css" />
+
+    <div class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="row d-flex justify-content-center mb-3">
+            <div class="col-auto w-100" id="register-card-container">
+                <div class="card shadow">
+                    <div class="card-body lead">
+                        <img src="/images/qr_supermarket_logo.png" alt="" class="card-img-top" />
+                        <h5 class="card-title text-center">Company Regirstraion</h5>
+                        <form action="" class="validated-form" novalidate method="POST">
+                            <div class="mb-3">
+                                <label class="form-label" for="companyName">Company Name</label>
+                                <input class="form-control" type="text" name="companyName" id="companyName" required autofocus />
+                                <div class="valid-feedback">Ready for submission</div>
+                                <div class="invalid-feedback">Please add data</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="email">Company Email </label>
+                                <input class="form-control" type="email" name="email" id="email" required />
+                                <div class="valid-feedback">Ready for submission</div>
+                                <div class="invalid-feedback">Please add data</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="password">Password</label>
+                                <input class="form-control" type="password" name="password" id="password" required />
+                                <div class="valid-feedback">Ready for submission</div>
+                                <div class="invalid-feedback">Please add data</div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label" for="description">Description</label>
+                                <input class="form-control" type="text" name="description" id="description" required />
+                                <div class="valid-feedback">Ready for submission</div>
+                                <div class="invalid-feedback">Please add data</div>
+                            </div>
+                            <button class="btn btn-success btn-block">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,16 @@
+#receipt {
+    width: 70vw;
+    height: 70vh;
+}
+
+@media (max-width: 1075px) {
+    #qr-div {
+        transform: scale(0.75);
+    }
+}
+
+@media (max-width: 953px) {
+    #qr-div {
+        transform: scale(0.5);
+    }
+}
